@@ -6,8 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-
-
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#targetUrl").append('<div>'+ window.location.pathname +'</div>');
+});
+</script>
 </head>
 <body>
 	
@@ -23,8 +27,8 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td></td>
-				<td></td>
+				<td id="targetUrl"></td>
+				<td>${count}</td>
 			</tr>
 		</tbody>
 	</table>

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jimini.board.domain.MemberVO;
-import com.jimini.board.domain.ViewCountVO;
 import com.jimini.board.service.PostService;
 
 @Controller
@@ -22,10 +21,10 @@ public class BoardWebController {
 	
 	/* 메인 페이지 */
 	@GetMapping("/home")
-	public String mainHome(Model model, ViewCountVO cvo) throws Exception {
+	public String mainHome(Model model) throws Exception {
 		
 		model.addAttribute("posts", "mainHome");
-		model.addAttribute("count", postService.getViewCount("/home"));
+		model.addAttribute("count", postService.getViewCount("/web/home"));
 		
 		String hitUrl = "/web/home";
 		postService.plusCount(hitUrl);

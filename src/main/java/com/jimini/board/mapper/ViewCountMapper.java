@@ -2,8 +2,6 @@ package com.jimini.board.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.jimini.board.domain.ViewCountVO;
-
 @Mapper
 public interface ViewCountMapper {
 
