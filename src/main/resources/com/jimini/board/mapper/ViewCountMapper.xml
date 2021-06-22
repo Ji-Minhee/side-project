@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jimini.board.mapper.ViewCountMapper">
+
+	<select id="selectCount" parameterType="com.jimini.board.domain.ViewCountVO" resultType="int">
+		SELECT count
+		FROM tb_count
+		WHERE target_url = #{targetUrl}
+	</select>
+	
+	<update id="updateCount" parameterType="com.jimini.board.domain.ViewCountVO">
+		UPDATE tb_count
+		SET count = count + 1,
+			last_update_date = now()
+		WHERE target_url = #{targetUrl}
+	</update>
+		
+</mapper>
