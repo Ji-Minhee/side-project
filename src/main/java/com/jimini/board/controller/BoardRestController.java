@@ -17,9 +17,14 @@ public class BoardRestController {
 	
 	
 	@GetMapping(value = "/count")
-	public int getViewCount (ViewCountVO cvo) {
-		String hitUrl = "/web/home";
-		return postService.getViewCount(hitUrl);
+	public Object getViewCount (ViewCountVO cvo) {
+		
+		//String hitUrl = "/web/home";
+		
+		ViewCountVO targetUrl = new ViewCountVO();
+		targetUrl.setTargetUrl("/web/home");
+		
+		return postService.getViewCount(targetUrl);
 	}
 	
 }

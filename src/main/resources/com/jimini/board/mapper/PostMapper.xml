@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jimini.board.mapper.PostMapper">
+
+	<select id="selectPostList" parameterType="com.jimini.board.domain.PostVO" resultType="com.jimini.board.domain.PostVO">
+		SELECT pno, title, writer, content, reg_date, update_date
+		FROM tb_posts
+	</select>
+	
+	<insert id="createPost" parameterType="com.jimini.board.domain.PostVO">
+		INSERT INTO tb_posts (title, writer, content, reg_date)
+		VALUE (#{title}, #{writer}, #{content}, now())
+	</insert>
+	
+	<update id="updatePost" parameterType="com.jimini.board.domain.PostVO">
+		UPDATE tb_posts
+		SET title = #{title}, content = #{content}, update_date = now()
+		WHERE pno = #{id}
+	</update>
+	
+	
+		
+</mapper>

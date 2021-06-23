@@ -1,14 +1,12 @@
 package com.jimini.board.controller;
 
-import java.sql.Timestamp;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jimini.board.domain.MemberVO;
+import com.jimini.board.domain.ViewCountVO;
 import com.jimini.board.service.PostService;
 
 @Controller
@@ -24,12 +22,15 @@ public class BoardWebController {
 	public String mainHome(Model model) throws Exception {
 		
 		model.addAttribute("posts", "mainHome");
-		model.addAttribute("count", postService.getViewCount("/web/home"));
+		
+		ViewCountVO targetUrl = new ViewCountVO();
+		targetUrl.setTargetUrl("/web/home");
+		model.addAttribute("count", postService.getViewCount(targetUrl));
 		
 		String hitUrl = "/web/home";
 		postService.plusCount(hitUrl);
 		
-		return "index";
+		return "layout/baseMain";
 	}
 	
 	
@@ -93,27 +94,5 @@ public class BoardWebController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	@GetMapping("/sample1")
-	public void sample1(Model model) {
-		
-		model.addAttribute("greeting", "hello~~~~");
-		model.addAttribute("greeting2", "아아아");
-		
-	}
-	
-	@GetMapping("/sample2")
-	public void sample2(Model model) {
-		
-		MemberVO vo = new MemberVO(123, "u01", "p01", "jimini", new Timestamp(System.currentTimeMillis()));
-		
-		model.addAttribute("vo", vo);
-		
-	}
 
 }
