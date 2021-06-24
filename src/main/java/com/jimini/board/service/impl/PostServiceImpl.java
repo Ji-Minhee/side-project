@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jimini.board.domain.PostResponseVO;
 import com.jimini.board.domain.PostVO;
 import com.jimini.board.domain.ViewCountVO;
 import com.jimini.board.mapper.PostMapper;
@@ -22,9 +23,33 @@ public class PostServiceImpl implements PostService {
 	
 	
 	@Override
-	public List<PostVO> getPostList(PostVO vo) {
-		return postMapper.selectPostList(vo);
+	public PostResponseVO getPostList() {
+		
+		PostResponseVO resVO = new PostResponseVO();
+		
+		//게시물 리스트
+		List<PostVO> postList = postMapper.selectPostList();
+		resVO.setPostList(postList);
+		
+		return resVO;
 	}
+	
+	
+	
+	@Override
+	public PostResponseVO getPostDetail(PostVO vo) {
+		
+		PostResponseVO resVO = new PostResponseVO();
+		
+		//게시물 상세조회
+		List<PostVO> postList = postMapper.selectPostDetail(vo);
+		resVO.setPostList(postList);
+		
+		return resVO;
+	}
+	
+	
+	
 	
 	@Override
 	public void createPost(PostVO vo) {

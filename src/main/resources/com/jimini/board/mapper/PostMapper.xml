@@ -2,18 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jimini.board.mapper.PostMapper">
 
-	<select id="selectPostList" parameterType="com.jimini.board.domain.PostVO" resultType="com.jimini.board.domain.PostVO">
-		SELECT pno, title, writer, content, reg_date, update_date
-		FROM tb_posts
+	<select id="selectPostList" resultType="com.jimini.board.domain.PostVO">
+		SELECT 	post.pno			AS pno, 
+				post.title			AS title, 
+				post.writer			AS writer, 
+				post.content		AS content, 
+				post.view_count		AS viewCount, 
+				post.reg_date		AS regDate, 
+				post.update_date	AS updateDate
+		FROM board_ex.tb_posts post
+		WHERE 1=1
+		ORDER BY pno DESC
 	</select>
 	
+	<select id="selectPostDetail" parameterType="com.jimini.board.domain.PostVO" resultType="com.jimini.board.domain.PostVO">
+		SELECT 	post.pno			AS pno, 
+				post.title			AS title, 
+				post.writer			AS writer, 
+				post.content		AS content, 
+				post.view_count		AS viewCount, 
+				post.reg_date		AS regDate, 
+				post.update_date	AS updateDate
+		FROM board_ex.tb_posts post
+		WHERE pno = #{pno}
+	</select>
+	
+	
+	
+	<sql id="listSearch">
+		<if test='title != null or title != ""'>AND title LIKE CONCAT('%', #{title}, '%')</if>
+	</sql>
+	
 	<insert id="createPost" parameterType="com.jimini.board.domain.PostVO">
-		INSERT INTO tb_posts (title, writer, content, reg_date)
+		INSERT INTO board_ex.tb_posts (title, writer, content, reg_date)
 		VALUE (#{title}, #{writer}, #{content}, now())
 	</insert>
 	
 	<update id="updatePost" parameterType="com.jimini.board.domain.PostVO">
-		UPDATE tb_posts
+		UPDATE board_ex.tb_posts
 		SET title = #{title}, content = #{content}, update_date = now()
 		WHERE pno = #{id}
 	</update>

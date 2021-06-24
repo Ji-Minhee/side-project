@@ -1,14 +1,20 @@
 package com.jimini.board.service;
 
-import java.util.List;
-
+import com.jimini.board.domain.PostResponseVO;
 import com.jimini.board.domain.PostVO;
 import com.jimini.board.domain.ViewCountVO;
 
 public interface PostService {
 
 	/* 게시물 리스트 */
-	public List<PostVO> getPostList(PostVO vo);
+	public PostResponseVO getPostList();
+	
+	/* 게시물 상세보기 */
+	public PostResponseVO getPostDetail(PostVO vo);
+	
+	
+	
+	
 	
 	/* 게시물 작성 */
 	public void createPost(PostVO vo);
