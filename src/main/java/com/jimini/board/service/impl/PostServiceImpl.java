@@ -34,8 +34,6 @@ public class PostServiceImpl implements PostService {
 		return resVO;
 	}
 	
-	
-	
 	@Override
 	public PostResponseVO getPostDetail(PostVO vo) {
 		
@@ -48,9 +46,6 @@ public class PostServiceImpl implements PostService {
 		return resVO;
 	}
 	
-	
-	
-	
 	@Override
 	public void createPost(PostVO vo) {
 		postMapper.createPost(vo);
@@ -60,6 +55,14 @@ public class PostServiceImpl implements PostService {
 	public void updatePost(PostVO vo) {
 		postMapper.updatePost(vo);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@Override
 	public int getViewCount(ViewCountVO targetUrl) {

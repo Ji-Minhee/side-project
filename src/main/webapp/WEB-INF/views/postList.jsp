@@ -21,6 +21,11 @@ $(document).ready(function(){
 			location.href = "/web/detail/" + id;
 	});
 	
+	/* 등록 버튼 */
+	$("#write").on('click', function() {
+		window.location.href = "/web/create";
+	});
+	
 });
 
 <%-- 게시물 전체 리스트 조회 --%>
@@ -77,6 +82,9 @@ function showPostList(data) {
 
 <h3>total list</h3>
 
+<div class="">
+	<a href="javascript:void(0);" class="" id="write">등록</a>
+</div>
 <table>
 	<thead>
 		<tr>

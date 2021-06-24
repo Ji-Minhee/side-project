@@ -27,23 +27,35 @@
 		WHERE pno = #{pno}
 	</select>
 	
+	<insert id="createPost" parameterType="com.jimini.board.domain.PostVO">
+		INSERT INTO board_ex.tb_posts (
+			title, 
+			writer, 
+			content,
+			view_count, 
+			reg_date
+		)
+		VALUE (
+			#{title}, 
+			#{writer}, 
+			#{content}, 
+			0,
+			now()
+		)
+	</insert>
+	
+	<update id="updatePost" parameterType="com.jimini.board.domain.PostVO">
+		UPDATE board_ex.tb_posts
+		SET title = #{title},
+			content = #{content},
+			update_date = now()
+		WHERE pno = #{pno}
+	</update>
+	
 	
 	
 	<sql id="listSearch">
 		<if test='title != null or title != ""'>AND title LIKE CONCAT('%', #{title}, '%')</if>
 	</sql>
-	
-	<insert id="createPost" parameterType="com.jimini.board.domain.PostVO">
-		INSERT INTO board_ex.tb_posts (title, writer, content, reg_date)
-		VALUE (#{title}, #{writer}, #{content}, now())
-	</insert>
-	
-	<update id="updatePost" parameterType="com.jimini.board.domain.PostVO">
-		UPDATE board_ex.tb_posts
-		SET title = #{title}, content = #{content}, update_date = now()
-		WHERE pno = #{id}
-	</update>
-	
-	
 		
 </mapper>

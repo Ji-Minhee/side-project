@@ -12,15 +12,17 @@ public interface PostService {
 	/* 게시물 상세보기 */
 	public PostResponseVO getPostDetail(PostVO vo);
 	
-	
-	
-	
-	
 	/* 게시물 작성 */
 	public void createPost(PostVO vo);
 	
 	/* 게시물 수정 */
 	public void updatePost(PostVO vo);
+	
+	
+	
+	
+	
+	
 	
 	/* 조회수 보기 */
 	public int getViewCount(ViewCountVO targetUrl);

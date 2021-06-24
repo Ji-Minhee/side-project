@@ -42,31 +42,31 @@ public class BoardWebController {
 	/* 게시물 상세보기 */
 	@GetMapping("/detail/{postId}")
 	public String postDetail( Model model, @PathVariable("postId") Long pno ) {
-		
 		model.addAttribute("pno", pno);
-		
 		return "postDetail";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	/* 게시물 생성 */
-	@GetMapping("/create/post")
+	/* 게시물 작성 */
+	@GetMapping("/create")
 	public String postCreate() {
-		return "postCreate.html";
+		return "postWrite";
 	}
 	
 	/* 게시물 수정 */
-	@GetMapping("/update/post")
-	public String postUpdate() {
-		return "postUpdate.html";
+	@GetMapping("/update/{postId}")
+	public String postUpdate( Model model, @PathVariable("postId") Long pno ) {
+		model.addAttribute("pno", pno);
+		return "postUpdate";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/*게시물 삭제*/
 	@GetMapping("/delete/post")
@@ -76,11 +76,6 @@ public class BoardWebController {
 	
 	@GetMapping("/create/{boardType}")
 	public String boardCreate() {
-		return "";
-	}
-	
-	@GetMapping("/update/{boardType}")
-	public String boardUpdate() {
 		return "";
 	}
 	

@@ -15,9 +15,10 @@ public interface PostMapper {
 	/* 게시물 상세조회 */
 	public List<PostVO> selectPostDetail(PostVO vo);
 	
-	
+	/* 게시물 작성 */
 	public void createPost(PostVO vo);
 	
+	/* 게시물 수정 */
 	public void updatePost(PostVO vo);
 	
 }
