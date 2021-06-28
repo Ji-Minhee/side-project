@@ -2,17 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jimini.board.mapper.PostMapper">
 
-	<select id="selectPostList" resultType="com.jimini.board.domain.PostVO">
-		SELECT 	post.pno			AS pno, 
-				post.title			AS title, 
-				post.writer			AS writer, 
-				post.content		AS content, 
-				post.view_count		AS viewCount, 
-				post.reg_date		AS regDate, 
-				post.update_date	AS updateDate
-		FROM board_ex.tb_posts post
-		WHERE 1=1
-		ORDER BY pno DESC
+	<select id="selectPostList" parameterType="com.jimini.common.domain.PaginationVO" resultType="com.jimini.board.domain.PostVO">
+		SELECT R1.*
+		FROM(
+			SELECT post.pno         AS pno,
+				 post.title       AS title,
+				 post.writer      AS writer,
+				 post.content     AS content,
+				 post.view_count  AS viewCount,
+				 post.reg_date    AS regDate,
+				 post.update_date AS updateDate
+			FROM board_ex.tb_posts post
+			ORDER BY pno DESC
+		) R1
+		LIMIT #{startList}, #{listSize}
 	</select>
 	
 	<select id="selectPostDetail" parameterType="com.jimini.board.domain.PostVO" resultType="com.jimini.board.domain.PostVO">
@@ -33,13 +36,15 @@
 			writer, 
 			content,
 			view_count, 
-			reg_date
+			reg_date,
+			update_date
 		)
 		VALUE (
 			#{title}, 
 			#{writer}, 
 			#{content}, 
 			0,
+			now(),
 			now()
 		)
 	</insert>
@@ -50,6 +55,23 @@
 			content = #{content},
 			update_date = now()
 		WHERE pno = #{pno}
+	</update>
+	
+	<delete id="deletePost" parameterType="com.jimini.board.domain.PostVO">
+		DELETE
+		FROM	board_ex.tb_posts
+		WHERE	pno = #{pno}
+	</delete>
+	
+	<select id="postTotalCount" resultType="int">
+		SELECT COUNT(*)	AS totCnt
+		FROM board_ex.tb_posts
+	</select>
+	
+	<update id="hitPlus" parameterType="com.jimini.board.domain.PostVO">
+		UPDATE	board_ex.tb_posts
+		SET		view_count = view_count + 1
+		WHERE	pno = #{pno}
 	</update>
 	
 	

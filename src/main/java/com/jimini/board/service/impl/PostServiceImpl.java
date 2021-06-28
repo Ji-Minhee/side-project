@@ -11,6 +11,7 @@ import com.jimini.board.domain.ViewCountVO;
 import com.jimini.board.mapper.PostMapper;
 import com.jimini.board.mapper.ViewCountMapper;
 import com.jimini.board.service.PostService;
+import com.jimini.common.domain.PaginationVO;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -23,15 +24,31 @@ public class PostServiceImpl implements PostService {
 	
 	
 	@Override
-	public PostResponseVO getPostList() {
+	public PostResponseVO getPostList(PaginationVO vo) {
 		
 		PostResponseVO resVO = new PostResponseVO();
 		
 		//게시물 리스트
-		List<PostVO> postList = postMapper.selectPostList();
+		List<PostVO> postList = postMapper.selectPostList(vo);
 		resVO.setPostList(postList);
 		
+		//게시물 총 갯수
+		int totCnt = postMapper.postTotalCount();
+		resVO.setTotCnt(totCnt);
+		
+		//Pagination 객체 생성
+		PaginationVO pagination = new PaginationVO();
+		int page = 1;
+		int range = 1;
+		pagination.pageInfo(page, range, totCnt);
+		resVO.setPagination(pagination);
+		
 		return resVO;
+	}
+	
+	@Override
+	public int postTotalCount() {
+		return postMapper.postTotalCount();
 	}
 	
 	@Override
@@ -40,8 +57,8 @@ public class PostServiceImpl implements PostService {
 		PostResponseVO resVO = new PostResponseVO();
 		
 		//게시물 상세조회
-		List<PostVO> postList = postMapper.selectPostDetail(vo);
-		resVO.setPostList(postList);
+		PostVO post = postMapper.selectPostDetail(vo);
+		resVO.setPost(post);
 		
 		return resVO;
 	}

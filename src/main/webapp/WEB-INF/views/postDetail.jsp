@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="/WEB-INF/views/layout/header.jsp" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
-<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 var postId = ${pno};
 $(document).ready(function(){
@@ -42,8 +41,8 @@ function getPostDetail() {
 }
 
 function showPostDetail(data) {
-	console.log(data.postList[0]);
-	var item = data.postList[0];
+	console.log(data.post);
+	var item = data.post;
 	$("#dtl_no").text(postId);
 	$("#dtl_title").text(item.title);
 	$("#dtl_writer").text(item.writer);
@@ -56,10 +55,13 @@ function showPostDetail(data) {
 </head>
 <body>
 
-<h1>게시판</h1>
-
-<h3>post detail</h3>
-
+<!-- Page Content -->
+<div class="container">
+	<h1 class="mt-4">게시판</h1>
+	<h3>post detail</h3>
+	
+	<br>
+	
 <table>
 	<tr>
 		<th colspan = "2">No</th>
@@ -83,10 +85,12 @@ function showPostDetail(data) {
 	</tr>
 </table>
 
-<div class="">
-	<a href="javascript:void(0);" class="" id="list">목록</a>
-	<a href="javascript:void(0);" class="" id="update">수정</a>
-</div>
+<br>
+<p class="">
+	<button type="button" class="btn btn-sm btn-primary" id="list">목록</button>
+	<button type="button" class="btn btn-sm btn-primary" id="update">수정</button>
+</p>
 
+</div>
 </body>
 </html>

@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="/WEB-INF/views/layout/header.jsp" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
-<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -46,10 +45,13 @@ function postWrite() {
 </head>
 <body>
 
-<h1>게시판</h1>
-
-<h3>post create</h3>
-
+<!-- Page Content -->
+<div class="container">
+	<h1 class="mt-4">게시판</h1>
+	<h3>post create</h3>
+	
+	<br>
+	
 <table>
 	<tr>
 		<th>title</th>
@@ -61,14 +63,17 @@ function postWrite() {
 	</tr>
 	<tr>
 		<th>content</th>
-		<td><input type="text" id="content"></td>
+		<td><textarea id="content" name="content" rows="5"></textarea></td>
 	</tr>
 </table>
 
-<div>
-	<a href="javascript:void(0);" class="" id="list">목록</a>
-	<a href="javascript:void(0);" class="" id="upload_btn">저장</a>
+<br>
+<p class="">
+	<button type="button" class="btn btn-sm btn-primary" id="list">목록</button>
+	<button type="button" class="btn btn-sm btn-primary" id="upload_btn">저장</button>
+</p>
+
+
 </div>
-			
 </body>
 </html>

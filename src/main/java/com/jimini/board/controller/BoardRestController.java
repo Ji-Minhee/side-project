@@ -1,19 +1,27 @@
 package com.jimini.board.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jimini.board.domain.PostResponseVO;
 import com.jimini.board.domain.PostVO;
 import com.jimini.board.domain.ViewCountVO;
 import com.jimini.board.service.PostService;
+import com.jimini.common.domain.PaginationVO;
+
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
+@Slf4j
 @RequestMapping(value = "/rest/post")
 public class BoardRestController {
 
@@ -23,12 +31,27 @@ public class BoardRestController {
 
 	/* 게시물 전체 리스트 조회 */
 	@GetMapping(value = "/list")
-	public PostResponseVO getPostList () {
+	public PostResponseVO getPostList (	Model model,
+										@RequestParam(required = false, defaultValue = "1") int page,
+										@RequestParam(required = false, defaultValue = "1") int range ) {
 		
-		PostResponseVO resVO = postService.getPostList();
+		//전체 게시글 개수
+		int totCnt = postService.postTotalCount();
+		
+		//Pagination 객체 생성
+		PaginationVO pagination = new PaginationVO();
+		pagination.pageInfo(page, range, totCnt);
+				
+		PostResponseVO resVO = postService.getPostList(pagination);
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("boardList", postService.getPostList(pagination));
 		
 		return resVO;
 	}
+	
+	
+	
 	
 	/* 게시물 상세조회 */
 	@GetMapping(value = "/detail/{postId}")
@@ -43,7 +66,7 @@ public class BoardRestController {
 	}
 	
 	/* 게시물 등록 */
-	@PostMapping(value = "/write", produces = "application/json; charset=UTF-8")
+	@PostMapping(value = "/write")
 	public void createPost ( @RequestBody PostVO vo ) {
 		
 		postService.createPost(vo);
