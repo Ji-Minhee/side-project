@@ -144,7 +144,7 @@ function fn_next(page, range, rangeSize) {
 	<div id="paginationBox">
 		<ul class="pagination justify-content-center">
 			<c:if test="${pagination.prev}">
-				<li class="page-item"><a class="page-link" href="#" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')"> << </a></li>
+				<li class="page-item"><a class="page-link" href="#" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')"> 〈〈 </a></li>
 			</c:if>
 	
 			<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
@@ -152,7 +152,7 @@ function fn_next(page, range, rangeSize) {
 			</c:forEach>
 	
 			<c:if test="${pagination.next}">
-				<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')"> >> </a></li>
+				<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')"> 〉〉 </a></li>
 			</c:if>
 		</ul>
 	</div>

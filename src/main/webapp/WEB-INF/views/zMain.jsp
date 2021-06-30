@@ -19,7 +19,10 @@ $(document).ready(function(){
 <div class="container">
 
 	<h1 class="mt-4">MAIN</h1>
-
+	<br>
+	<br>
+	
+	
 	<ul>
 		<li><a href="/web/list">게시판</a></li>
 		<li><a href="/web/code/group/list">공통코드관리</a></li>

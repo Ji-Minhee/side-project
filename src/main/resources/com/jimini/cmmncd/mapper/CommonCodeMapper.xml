@@ -10,7 +10,6 @@
 			   gcd.use_yn			AS useYn,
 			   gcd.reg_date			AS regDate
 		FROM board_ex.tb_codegroup gcd
-		ORDER BY id DESC
 		<!-- LIMIT #{startList}, #{listSize} -->
 	</select>
 	
