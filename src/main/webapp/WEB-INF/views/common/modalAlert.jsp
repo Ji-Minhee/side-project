@@ -16,7 +16,7 @@
 			<div class="modal-body">게시글 수정 완료</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-				<button type="button" class="btn btn-primary" onClick="location.href='/web/list'">확인</button>
+				<button type="button" class="btn btn-primary" onClick="location.href='/'">확인</button>
 			</div>
 		</div>
 	</div>
