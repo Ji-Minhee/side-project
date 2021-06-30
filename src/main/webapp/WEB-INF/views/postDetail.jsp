@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
 
 <!DOCTYPE html>
@@ -32,10 +31,7 @@ function getPostDetail() {
 		url: "/rest/post/detail/" + postId,
 		success: function(data) {
 			console.log(data);
-			if(data.statusCode == 9999) {
-			} else {
-				showPostDetail(data);
-			}
+			showPostDetail(data);
 		}
 	});
 }
@@ -57,37 +53,40 @@ function showPostDetail(data) {
 
 <!-- Page Content -->
 <div class="container">
-	<h1 class="mt-4">게시판</h1>
+	<h1 class="mt-4">BOARD</h1>
 	<h3>post detail</h3>
 	
 	<br>
 	
-<table>
+<table class="table table-sm table-bordered">
 	<tr>
-		<th colspan = "2">No</th>
-		<td colspan = "2" id="dtl_no"></td>
+		<th class="text-center col-md-2">No</th>
+		<td id="dtl_no"></td>
 	</tr>
 	<tr>
-		<th colspan = "2">title</th>
-		<td colspan = "2" id="dtl_title"></td>
+		<th class="text-center">title</th>
+		<td id="dtl_title"></td>
 	</tr>
 	<tr>
-		<th colspan = "2">writer</th>
-		<td colspan = "2" id="dtl_writer"></td>
+		<th class="text-center">writer</th>
+		<td id="dtl_writer"></td>
 	</tr>
 	<tr>
-		<th colspan = "2">content</th>
-		<td colspan = "2" id="dtl_content"></td>
+		<th class="text-center">content</th>
+		<td id="dtl_content"></td>
 	</tr>
-	<tr>
-		<th>작성일</th><td id="dtl_regdate"></td>
-		<th>수정일</th><td id="dtl_updatedate"></td>
+</table>
+
+<table class="table table-sm table-bordered">
+	<tr class="text-center">
+		<th class="col-md-2">작성일</th><td id="dtl_regdate" class="col-md-4"></td>
+		<th class="col-md-2">수정일</th><td id="dtl_updatedate" class="col-md-4"></td>
 	</tr>
 </table>
 
 <br>
-<p class="">
-	<button type="button" class="btn btn-sm btn-primary" id="list">목록</button>
+<p class="row justify-content-center">
+	<button type="button" class="btn btn-sm btn-primary" id="list">목록</button> &nbsp; 
 	<button type="button" class="btn btn-sm btn-primary" id="update">수정</button>
 </p>
 

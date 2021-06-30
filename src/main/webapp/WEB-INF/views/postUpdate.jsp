@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
+<%@ include file="/WEB-INF/views/common/modalAlert.jsp" %>
 
 <!DOCTYPE html>
 <html>
@@ -62,7 +62,7 @@ function postUpdate() {
 		}),
 		contentType: "application/json; charset=utf-8",
 		success: function() {
-			alert("글 수정 완료 ^^");
+			//alert("글 수정 완료 ^^");
 		}
 	});
 }
@@ -74,34 +74,34 @@ function postUpdate() {
 
 <!-- Page Content -->
 <div class="container">
-	<h1 class="mt-4">게시판</h1>
+	<h1 class="mt-4">BOARD</h1>
 	<h3>post update</h3>
 	
 	<br>
 	
-<table>
+<table class="table table-sm table-bordered">
 	<tr>
-		<th>No</th>
+		<th class="text-center col-md-2">No</th>
 		<td id="dtl_no"></td>
 	</tr>
 	<tr>
-		<th>title</th>
-		<td><input type="text" id="upd_title" name="title"></td>
+		<th class="text-center">title</th>
+		<td class="col-xs-4"><input type="text" class="form-control" id="upd_title" name="title"></td>
 	</tr>
 	<tr>
-		<th>writer</th>
+		<th class="text-center">writer</th>
 		<td id="dtl_writer"></td>
 	</tr>
 	<tr>
-		<th>content</th>
-		<td><textarea id="upd_content" name="content" rows="5"></textarea></td>
+		<th class="text-center">content</th>
+		<td class="col-xs-4"><textarea class="form-control" id="upd_content" name="content" rows="5"></textarea></td>
 	</tr>
 </table>
 
 <br>
-<p class="">
-	<button type="button" class="btn btn-sm btn-primary" id="list">목록</button>
-	<button type="button" class="btn btn-sm btn-primary" id="update_btn">수정</button>
+<p class="row justify-content-center">
+	<button type="button" class="btn btn-sm btn-primary" id="list">목록</button> &nbsp; 
+	<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#staticBackdrop" id="update_btn">수정</button>
 </p>
 
 </div>

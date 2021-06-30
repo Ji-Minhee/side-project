@@ -1,5 +1,7 @@
 package com.jimini.board.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jimini.board.domain.PostVO;
+import com.jimini.board.mapper.PostMapper;
 import com.jimini.board.service.PostService;
 import com.jimini.common.domain.PaginationVO;
 
@@ -15,27 +19,11 @@ import com.jimini.common.domain.PaginationVO;
 @RequestMapping(value = "/web")
 public class BoardWebController {
 
-	
 	@Autowired
 	private PostService postService;
 	
-	
-	/* 메인 페이지 */
-	/*
-	 * @GetMapping("/home") 
-	 * public String mainHome(Model model) throws Exception {
-	 * 
-	 * model.addAttribute("posts", "mainHome");
-	 * 
-	 * ViewCountVO targetUrl = new ViewCountVO();
-	 * targetUrl.setTargetUrl("/web/home"); 
-	 * model.addAttribute("count", postService.getViewCount(targetUrl));
-	 * 
-	 * String hitUrl = "/web/home";
-	 * postService.plusCount(hitUrl);
-	 * 
-	 * return "baseMain"; }
-	 */
+	@Autowired
+	private PostMapper postMapper;
 	
 	
 	/* 게시물 전체보기 */
@@ -51,8 +39,10 @@ public class BoardWebController {
 		PaginationVO pagination = new PaginationVO();
 		pagination.pageInfo(page, range, totCnt);
 		
+		List<PostVO> postList = postMapper.selectPostList(pagination);
+		
 		model.addAttribute("pagination", pagination);
-		model.addAttribute("boardList", postService.getPostList(pagination));
+		model.addAttribute("postList", postList);
 		
 		return "postList";
 	}
@@ -72,7 +62,8 @@ public class BoardWebController {
 	
 	/* 게시물 수정 */
 	@GetMapping("/update/{postId}")
-	public String postUpdate( Model model, @PathVariable("postId") Long pno ) {
+	public String postUpdate( Model model,
+							  @PathVariable("postId") Long pno ) {
 		model.addAttribute("pno", pno);
 		return "postUpdate";
 	}

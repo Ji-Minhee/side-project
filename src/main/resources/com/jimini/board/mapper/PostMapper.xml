@@ -3,18 +3,15 @@
 <mapper namespace="com.jimini.board.mapper.PostMapper">
 
 	<select id="selectPostList" parameterType="com.jimini.common.domain.PaginationVO" resultType="com.jimini.board.domain.PostVO">
-		SELECT R1.*
-		FROM(
-			SELECT post.pno         AS pno,
-				 post.title       AS title,
-				 post.writer      AS writer,
-				 post.content     AS content,
-				 post.view_count  AS viewCount,
-				 post.reg_date    AS regDate,
-				 post.update_date AS updateDate
-			FROM board_ex.tb_posts post
-			ORDER BY pno DESC
-		) R1
+		SELECT post.pno         AS pno,
+			   post.title       AS title,
+			   post.writer      AS writer,
+			   post.content     AS content,
+			   post.view_count  AS viewCount,
+			   post.reg_date    AS regDate,
+			   post.update_date AS updateDate
+		FROM board_ex.tb_posts post
+		ORDER BY pno DESC
 		LIMIT #{startList}, #{listSize}
 	</select>
 	

@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
 
 <!DOCTYPE html>
@@ -11,10 +9,10 @@
 $(document).ready(function(){
 	
 	/* 게시물 전체 리스트 */
-	getPostList();
+	//getPostList();
 	
 	/* 제목 클릭시 >> 게시글 상세보기 화면 이동 */
-	$(document).on('click', '#listAll .title a', function(e){
+	$(document).on('click', '#goDetail', function(e){
 		e.preventDefault();
 		var id = $(this).data('pno');
 			location.href = "/web/detail/" + id;
@@ -28,7 +26,7 @@ $(document).ready(function(){
 });
 
 <%-- 게시물 전체 리스트 조회 --%>
-function getPostList(page) {
+<%-- function getPostList(page) {
 	var url = "/rest/post/list";
 	if(page) url += "?page=" + page;
 	$.ajax({
@@ -45,18 +43,18 @@ function showPostList(data) {
 	
 	$("#listAll").html("");
 	
-	<%-- 리스트출력 (게시글 없을 때) --%>
+	리스트출력 (게시글 없을 때)
 	if(data.postList.length == 0) {
 		var html = '<tr><td colspan="5"><div class="no-data"><p>조회내역이 없습니다.</p></div></td></tr>';
 		$("#listAll").append(html);
 	}
 	
-	<%-- 리스트출력 (게시글 있을 때) --%>
+	리스트출력 (게시글 있을 때)
 	var html = [];
 	for (n in data.postList) {
 		var item = data.postList[n];
 		html.push('<tr>');
-		html.push(	'<td class="no">'+item.pno+'</td>');
+		html.push(	'<td class="no" scope="row">'+item.pno+'</td>');
 		html.push(	'<td class="title"><a href="#" data-pno="' + (item.pno||"") + '"</a>'+item.title+'</td>');
 		html.push(	'<td class="writer">'+item.writer+'</td>');
 		html.push(	'<td class="view_count">'+item.viewCount+'</td>');
@@ -65,7 +63,7 @@ function showPostList(data) {
 	}
 	$("#listAll").append(html.join(''));
 	
-}
+} --%>
 <%--// 게시물 전체 리스트 조회 --%>
 
 
@@ -85,7 +83,11 @@ function fn_prev(page, range, rangeSize) {
 function fn_pagination(page, range, rangeSize, searchType, keyword) {
 	var page = page
 	var range = range
-	getPostList(page, range, rangeSize);
+	var url = "/web/list";
+	url += "?page=" + page;
+	url += "&range=" + range;
+	location.href = url;
+	//getPostList(page, range, rangeSize);
 }
 
 //다음 버튼 이벤트
@@ -106,28 +108,41 @@ function fn_next(page, range, rangeSize) {
 
 <!-- Page Content -->
 <div class="container">
-	<h1 class="mt-4">게시판</h1>
+	<h1 class="mt-4">BOARD</h1>
 	<h3>total list</h3>
 
 	<br>
-	<p class="">
+	<p class="float-right">
 		<button type="button" class="btn btn-sm btn-primary" id="write">등록</button>
 	</p>
 	
-	<table>
+	<table class="table table-sm text-center table-bordered">
 		<thead>
 			<tr>
-				<th>No</th><th>title</th><th>writer</th><th>view_count</th><th>date</th>
+				<th scope="col" class="col-md-1">No</th>
+				<th scope="col" class="col-md-4">title</th>
+				<th scope="col" class="col-md-2">writer</th>
+				<th scope="col" class="col-md-1">view_count</th>
+				<th scope="col" class="col-md-3">date</th>
 			</tr>
 		</thead>
-		<tbody id="listAll">
+		<tbody>
+			<c:forEach items="${postList}" var="list">
+				<tr>
+					<td>${list.pno}</td>
+					<td><a href="#" data-pno="${list.pno}" id="goDetail">${list.title}</a></td>
+					<td>${list.writer}</td>
+					<td>${list.viewCount}</td>
+					<td>${list.regDate}</td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 	<br>
 	
 	<!-- pagination -->
 	<div id="paginationBox">
-		<ul class="pagination">
+		<ul class="pagination justify-content-center">
 			<c:if test="${pagination.prev}">
 				<li class="page-item"><a class="page-link" href="#" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')"> << </a></li>
 			</c:if>

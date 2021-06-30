@@ -8,7 +8,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 @SpringBootApplication
-@MapperScan(value = "com.jimini.board.mapper")
+@MapperScan(value = {"com.jimini.**.mapper"})
 public class SideProjectApplication {
 
 	public static void main(String[] args) {

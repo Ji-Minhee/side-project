@@ -259,5 +259,16 @@ textarea {
   h3 {
     page-break-after: avoid;
   }
-}
+  
+  .pagination {
+  	display: block;
+  	text-align: center;
+  	justify-content: center;
+  }
+  
+  .pagination > li > a {
+  	float: none;
+  	margin-left: -5px;
+  }
 
+}

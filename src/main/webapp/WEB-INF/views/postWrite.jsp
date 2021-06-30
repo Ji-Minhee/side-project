@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
 
 <!DOCTYPE html>
@@ -28,9 +27,9 @@ function postWrite() {
 		type: "POST",
 		url: "/rest/post/write",
 		data: JSON.stringify({
-			"title" : $("#title").val(),
-			"writer" : $("#writer").val(),
-			"content" : $("#content").val()
+			"title" 	: $("#title").val(),
+			"writer" 	: $("#writer").val(),
+			"content" 	: $("#content").val()
 		}),
 		contentType: "application/json; charset=utf-8",
 		success: function() {
@@ -39,37 +38,35 @@ function postWrite() {
 	});
 }
 <%--// 새 글 등록 --%>
-
-
 </script>
 </head>
 <body>
 
 <!-- Page Content -->
 <div class="container">
-	<h1 class="mt-4">게시판</h1>
+	<h1 class="mt-4">BOARD</h1>
 	<h3>post create</h3>
 	
 	<br>
 	
-<table>
+<table class="table table-sm table-bordered">
 	<tr>
-		<th>title</th>
-		<td><input type="text" id="title"></td>
+		<th class="text-center col-md-2">title</th>
+		<td class="col-xs-4"><input type="text" class="form-control" id="title"></td>
 	</tr>
 	<tr>
-		<th>writer</th>
-		<td><input type="text" id="writer"></td>
+		<th class="text-center">writer</th>
+		<td class="col-xs-4"><input type="text" class="form-control" id="writer"></td>
 	</tr>
 	<tr>
-		<th>content</th>
-		<td><textarea id="content" name="content" rows="5"></textarea></td>
+		<th class="text-center">content</th>
+		<td class="col-xs-4"><textarea class="form-control" id="content" name="content" rows="5"></textarea></td>
 	</tr>
 </table>
 
 <br>
-<p class="">
-	<button type="button" class="btn btn-sm btn-primary" id="list">목록</button>
+<p class="row justify-content-center">
+	<button type="button" class="btn btn-sm btn-primary" id="list">목록</button> &nbsp; 
 	<button type="button" class="btn btn-sm btn-primary" id="upload_btn">저장</button>
 </p>
 

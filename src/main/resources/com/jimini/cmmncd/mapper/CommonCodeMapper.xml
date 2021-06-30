@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jimini.cmmncd.mapper.CommonCodeMapper">
+
+	<select id="selectGroupCodeList" resultType="com.jimini.cmmncd.domain.GroupCodeVO">
+		SELECT gcd.id         		AS id,
+			   gcd.group_code       AS groupCode,
+			   gcd.group_code_name  AS groupCodeName,
+			   gcd.description		AS description,
+			   gcd.use_yn			AS useYn,
+			   gcd.reg_date			AS regDate
+		FROM board_ex.tb_codegroup gcd
+		ORDER BY id DESC
+		<!-- LIMIT #{startList}, #{listSize} -->
+	</select>
+	
+	<insert id="createGroupCode" parameterType="com.jimini.cmmncd.domain.GroupCodeVO">
+		INSERT INTO board_ex.tb_codegroup (
+			group_code, 
+			group_code_name, 
+			description,
+			use_yn, 
+			reg_date
+		)
+		VALUE (
+			#{groupCode}, 
+			#{groupCodeName}, 
+			#{description},
+			#{useYn},
+			now()
+		)
+	</insert>
+	
+	<update id="updateGroupCode" parameterType="com.jimini.cmmncd.domain.GroupCodeVO">
+		UPDATE board_ex.tb_codegroup
+		SET group_code = #{groupCode},
+			group_code_name = #{groupCodeName},
+			description = #{description},
+			use_yn = #{useYn}
+		WHERE id = #{id}
+	</update>
+	
+	<select id="groupCodeTotalCount" resultType="int">
+		SELECT COUNT(*)	AS totCnt
+		FROM board_ex.tb_codegroup
+	</select>
+
+
+
+	<select id="selectDetailCodeList" parameterType="com.jimini.cmmncd.domain.DetailCodeVO" resultType="com.jimini.cmmncd.domain.DetailCodeVO">
+		SELECT cdd.id         			AS id,
+			   cdd.group_id         	AS groupId,
+			   cdd.detail_code			AS detailCode,
+			   cdd.detail_code_name		AS detailCodeName,
+			   cdd.description			AS description,
+			   cdd.use_yn				AS useYn,
+			   cdd.reg_date				AS regDate,
+			   gcd.id         			AS gid,
+			   gcd.group_code       	AS groupCode,
+			   gcd.group_code_name  	AS groupCodeName,
+			   gcd.use_yn				AS useYn
+		FROM board_ex.tb_codedetail cdd,
+			 board_ex.tb_codegroup gcd
+		WHERE cdd.group_id = gcd.id
+		  AND group_id = #{groupId}
+		ORDER BY cdd.id DESC
+		<!-- LIMIT #{startList}, #{listSize} -->
+	</select>
+	
+	<insert id="createDetailCode" parameterType="com.jimini.cmmncd.domain.DetailCodeVO">
+		INSERT INTO board_ex.tb_codedetail (
+			group_id,
+			detail_code,
+			detail_code_name,
+			description,
+			use_yn,
+			reg_date
+		)
+		VALUE (
+			#{groupId}, 
+			#{detailCode},
+			#{detailCodeName},
+			#{description},
+			#{useYn},
+			now()
+		)
+	</insert>
+	
+	<update id="updateDetailCode" parameterType="com.jimini.cmmncd.domain.DetailCodeVO">
+		UPDATE board_ex.tb_codedetail
+		SET group_id = #{groupId},
+			detail_code = #{detailCode},
+			detail_code_name = #{detailCodeName},
+			description = #{description},
+			use_yn = #{useYn}
+		WHERE id = #{id}
+	</update>
+	
+	<select id="detailCodeTotalCount" parameterType="com.jimini.cmmncd.domain.DetailCodeVO" resultType="int">
+		SELECT COUNT(*)	AS totCnt
+		FROM board_ex.tb_codedetail
+		WHERE group_id = #{groupId}
+	</select>
+
+</mapper>
