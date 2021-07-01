@@ -86,8 +86,8 @@ function showPostDetail(data) {
 
 <br>
 <p class="row justify-content-center">
-	<button type="button" class="btn btn-sm btn-primary" id="list">목록</button> &nbsp; 
-	<button type="button" class="btn btn-sm btn-primary" id="update">수정</button>
+	<button type="button" class="btn btn-primary" id="list">목록</button> &nbsp; 
+	<button type="button" class="btn btn-primary" id="update">수정</button>
 </p>
 
 </div>

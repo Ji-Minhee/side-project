@@ -270,5 +270,9 @@ textarea {
   	float: none;
   	margin-left: -5px;
   }
+  
+  
+  .hidden-col { display: none; }
+  
 
 }

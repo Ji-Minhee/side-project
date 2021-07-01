@@ -25,7 +25,7 @@ public interface CommonCodeMapper {
 	
 	
 	/* 상세코드 리스트 */
-	public List<DetailCodeVO> selectDetailCodeList(DetailCodeVO vo);
+	public List<DetailCodeVO> selectDetailCodeList(int groupId);
 	
 	/* 상세코드 생성 */
 	public void createDetailCode(DetailCodeVO vo);
@@ -34,6 +34,6 @@ public interface CommonCodeMapper {
 	public void updateDetailCode(DetailCodeVO vo);
 	
 	/* 상세코드 수 */
-	public int detailCodeTotalCount(DetailCodeVO vo);
+	public int detailCodeTotalCount(int groupId);
 
 }

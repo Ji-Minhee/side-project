@@ -46,7 +46,7 @@
 
 
 
-	<select id="selectDetailCodeList" parameterType="com.jimini.cmmncd.domain.DetailCodeVO" resultType="com.jimini.cmmncd.domain.DetailCodeVO">
+	<select id="selectDetailCodeList" parameterType="int" resultType="com.jimini.cmmncd.domain.DetailCodeVO">
 		SELECT cdd.id         			AS id,
 			   cdd.group_id         	AS groupId,
 			   cdd.detail_code			AS detailCode,
@@ -62,7 +62,6 @@
 			 board_ex.tb_codegroup gcd
 		WHERE cdd.group_id = gcd.id
 		  AND group_id = #{groupId}
-		ORDER BY cdd.id DESC
 		<!-- LIMIT #{startList}, #{listSize} -->
 	</select>
 	
@@ -95,7 +94,7 @@
 		WHERE id = #{id}
 	</update>
 	
-	<select id="detailCodeTotalCount" parameterType="com.jimini.cmmncd.domain.DetailCodeVO" resultType="int">
+	<select id="detailCodeTotalCount" parameterType="int" resultType="int">
 		SELECT COUNT(*)	AS totCnt
 		FROM board_ex.tb_codedetail
 		WHERE group_id = #{groupId}

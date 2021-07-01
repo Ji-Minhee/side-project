@@ -40,16 +40,16 @@ public class CommonCodeServiceImpl implements CommonCodeService {
 	
 	
 	@Override
-	public CodeResponseVO getDetailCodeList(DetailCodeVO vo) {
+	public CodeResponseVO getDetailCodeList(int groupId) {
 		
 		CodeResponseVO resVO = new CodeResponseVO();
 		
 		//상세코드 리스트
-		List<DetailCodeVO> detailCodeList = commonCodeMapper.selectDetailCodeList(vo);
+		List<DetailCodeVO> detailCodeList = commonCodeMapper.selectDetailCodeList(groupId);
 		resVO.setDetailCodeList(detailCodeList);
 		
 		//상세코드 수
-		int totCnt = commonCodeMapper.detailCodeTotalCount(vo);
+		int totCnt = commonCodeMapper.detailCodeTotalCount(groupId);
 		resVO.setTotCnt(totCnt);
 		
 		return resVO;
@@ -66,8 +66,8 @@ public class CommonCodeServiceImpl implements CommonCodeService {
 	}
 	
 	@Override
-	public int detailCodeTotalCount(DetailCodeVO vo) {
-		return commonCodeMapper.detailCodeTotalCount(vo);
+	public int detailCodeTotalCount(int groupId) {
+		return commonCodeMapper.detailCodeTotalCount(groupId);
 	}
 	
 }

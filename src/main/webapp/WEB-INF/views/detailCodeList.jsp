@@ -10,7 +10,7 @@ var groupId = '1';
 $(document).ready(function(){
 	
 	/* 상세코드 리스트 */
-	//getCodeList();
+	getCodeList();
 	
 });
 

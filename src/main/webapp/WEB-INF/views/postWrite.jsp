@@ -66,8 +66,8 @@ function postWrite() {
 
 <br>
 <p class="row justify-content-center">
-	<button type="button" class="btn btn-sm btn-primary" id="list">목록</button> &nbsp; 
-	<button type="button" class="btn btn-sm btn-primary" id="upload_btn">저장</button>
+	<button type="button" class="btn btn-primary" id="list">목록</button> &nbsp; 
+	<button type="button" class="btn btn-primary" id="upload_btn">저장</button>
 </p>
 
 

@@ -8,8 +8,6 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	/* 게시물 전체 리스트 */
-	//getPostList();
 	
 	/* 제목 클릭시 >> 게시글 상세보기 화면 이동 */
 	$(document).on('click', '#goDetail', function(e){
@@ -24,47 +22,6 @@ $(document).ready(function(){
 	});
 	
 });
-
-<%-- 게시물 전체 리스트 조회 --%>
-<%-- function getPostList(page) {
-	var url = "/rest/post/list";
-	if(page) url += "?page=" + page;
-	$.ajax({
-		type: "GET",
-		url: url,
-		success: function(data) {
-			console.log(data);
-			showPostList(data);
-		}
-	});
-}
-
-function showPostList(data) {
-	
-	$("#listAll").html("");
-	
-	리스트출력 (게시글 없을 때)
-	if(data.postList.length == 0) {
-		var html = '<tr><td colspan="5"><div class="no-data"><p>조회내역이 없습니다.</p></div></td></tr>';
-		$("#listAll").append(html);
-	}
-	
-	리스트출력 (게시글 있을 때)
-	var html = [];
-	for (n in data.postList) {
-		var item = data.postList[n];
-		html.push('<tr>');
-		html.push(	'<td class="no" scope="row">'+item.pno+'</td>');
-		html.push(	'<td class="title"><a href="#" data-pno="' + (item.pno||"") + '"</a>'+item.title+'</td>');
-		html.push(	'<td class="writer">'+item.writer+'</td>');
-		html.push(	'<td class="view_count">'+item.viewCount+'</td>');
-		html.push(	'<td class="date">'+item.regDate.split(' ')[0]+'</td>');
-		html.push('</tr>');
-	}
-	$("#listAll").append(html.join(''));
-	
-} --%>
-<%--// 게시물 전체 리스트 조회 --%>
 
 
 <%-- paging event --%>
@@ -113,10 +70,10 @@ function fn_next(page, range, rangeSize) {
 
 	<br>
 	<p class="float-right">
-		<button type="button" class="btn btn-sm btn-primary" id="write">등록</button>
+		<button type="button" class="btn btn-primary" id="write">등록</button>
 	</p>
 	
-	<table class="table table-sm text-center table-bordered">
+	<table class="table table-sm text-center table-bordered table-hover">
 		<thead>
 			<tr>
 				<th scope="col" class="col-md-1">No</th>

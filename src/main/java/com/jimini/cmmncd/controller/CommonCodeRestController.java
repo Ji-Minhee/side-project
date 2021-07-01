@@ -1,19 +1,19 @@
 package com.jimini.cmmncd.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.jimini.cmmncd.domain.CodeResponseVO;
 import com.jimini.cmmncd.domain.DetailCodeVO;
 import com.jimini.cmmncd.domain.GroupCodeVO;
 import com.jimini.cmmncd.service.CommonCodeService;
 
-@Controller
+@RestController
 @RequestMapping(value = "/rest/code")
 public class CommonCodeRestController {
 
@@ -36,12 +36,12 @@ public class CommonCodeRestController {
 	
 	/* 상세코드 리스트 */
 	@GetMapping(value = "/detail/list/{groupId}")
-	public CodeResponseVO getDetailCodeList( @PathVariable(name="groupId", required = true) int groupId ) {
+	public CodeResponseVO getDetailCodeList( @PathVariable("groupId") int groupId ) {
 		
 		DetailCodeVO vo = new DetailCodeVO();
 		vo.setGroupId(groupId);
 		
-		CodeResponseVO resVO = commonCodeService.getDetailCodeList(vo);
+		CodeResponseVO resVO = commonCodeService.getDetailCodeList(vo.getGroupId());
 		
 		return resVO;
 	}

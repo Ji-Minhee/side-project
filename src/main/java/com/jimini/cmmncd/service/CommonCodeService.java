@@ -22,7 +22,7 @@ public interface CommonCodeService {
 	
 	
 	/* 상세코드 리스트 */
-	public CodeResponseVO getDetailCodeList(DetailCodeVO vo);
+	public CodeResponseVO getDetailCodeList(int groupId);
 	
 	/* 상세코드 생성 */
 	public void createDetailCode(DetailCodeVO vo);
@@ -31,6 +31,6 @@ public interface CommonCodeService {
 	public void updateDetailCode(DetailCodeVO vo);
 	
 	/* 상세코드 수 */
-	public int detailCodeTotalCount(DetailCodeVO vo);
+	public int detailCodeTotalCount(int groupId);
 	
 }
