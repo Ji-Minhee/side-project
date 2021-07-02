@@ -73,7 +73,10 @@ public class PostServiceImpl implements PostService {
 		postMapper.updatePost(vo);
 	}
 	
-	
+	@Override
+	public void hitPlus(Long pno) {
+		postMapper.hitPlus(pno);
+	}
 	
 	
 	

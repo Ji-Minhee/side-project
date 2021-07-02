@@ -26,7 +26,7 @@ $(document).ready(function(){
 	});
 
 	
-	/* 추가 버튼 */
+	/* 그룹코드 추가 버튼 */
 	$("#addGroupRow").on('click', function() {
 		var addTbRow =	'<tr>'+
 				        	'<td class="active hidden-col"></td>'+
@@ -177,12 +177,12 @@ function showCodeList(data) {
 	<table class="table table-sm text-center">
 		<thead>
 			<tr>
-				<th scope="col">그룹코드</th>
-				<th scope="col">상세코드</th>
-				<th scope="col">상세코드명</th>
-				<th scope="col">설명</th>
-				<th scope="col">사용여부</th>
-				<th scope="col">등록일</th>
+				<th scope="col" class="col-md-1">그룹코드</th>
+				<th scope="col" class="col-md-1">상세코드</th>
+				<th scope="col" class="col-md-1">상세코드명</th>
+				<th scope="col" class="col-md-2">설명</th>
+				<th scope="col" class="col-md-1">사용여부</th>
+				<th scope="col" class="col-md-1">등록일</th>
 			</tr>
 		</thead>
 		<tbody id="listAll">

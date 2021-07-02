@@ -22,6 +22,8 @@ public interface PostService {
 	/* 게시물 수정 */
 	public void updatePost(PostVO vo);
 	
+	/* 게시물 조회수 증가 */
+	public void hitPlus(Long pno);
 	
 	
 	

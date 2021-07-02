@@ -24,30 +24,6 @@ public class BoardRestController {
 	private PostService postService;
 	
 
-	/* 게시물 전체 리스트 조회 */
-//	@GetMapping(value = "/list")
-//	public PostResponseVO getPostList (	Model model,
-//										@RequestParam(required = false, defaultValue = "1") int page,
-//										@RequestParam(required = false, defaultValue = "1") int range ) {
-//		
-//		//전체 게시글 개수
-//		int totCnt = postService.postTotalCount();
-//		
-//		//Pagination 객체 생성
-//		PaginationVO pagination = new PaginationVO();
-//		pagination.pageInfo(page, range, totCnt);
-//				
-//		PostResponseVO resVO = postService.getPostList(pagination);
-//		
-//		model.addAttribute("pagination", pagination);
-//		model.addAttribute("boardList", postService.getPostList(pagination));
-//		
-//		return resVO;
-//	}
-	
-	
-	
-	
 	/* 게시물 상세조회 */
 	@GetMapping(value = "/detail/{postId}")
 	public PostResponseVO getPostDetail ( @PathVariable("postId") Long pno ) {
@@ -55,7 +31,10 @@ public class BoardRestController {
 		PostVO vo = new PostVO();
 		vo.setPno(pno);
 		
+		postService.hitPlus(pno);
+		
 		PostResponseVO resVO = postService.getPostDetail(vo);
+		log.info(":::::::::::::: 게시물 상세조회");
 		
 		return resVO;
 	}
@@ -64,6 +43,7 @@ public class BoardRestController {
 	@PostMapping(value = "/write")
 	public void createPost ( @RequestBody PostVO vo ) {
 		postService.createPost(vo);
+		log.info(":::::::::::::: 게시물 등록 완료");
 	}
 	
 	/* 게시물 수정 */
@@ -72,6 +52,7 @@ public class BoardRestController {
 							 @PathVariable("postId") Long pno ) {
 		vo.setPno(pno);
 		postService.updatePost(vo);
+		log.info(":::::::::::::: 게시물 수정 완료");
 	}
 	
 	

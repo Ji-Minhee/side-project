@@ -29,6 +29,6 @@ public interface PostMapper {
 	public int postTotalCount();
 	
 	/* 조회수 증가 */
-	public void hitPlus(PostVO vo);
+	public void hitPlus(Long pno);
 	
 }
