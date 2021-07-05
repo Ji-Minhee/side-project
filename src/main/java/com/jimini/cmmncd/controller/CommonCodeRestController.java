@@ -28,8 +28,10 @@ public class CommonCodeRestController {
 	}
 	
 	/* 그룹코드 수정 */
-	@PostMapping(value = "/group/update")
-	public void updateGroupCode( @RequestBody GroupCodeVO vo ) {
+	@PostMapping(value = "/group/update/{groupId}")
+	public void updateGroupCode( @RequestBody GroupCodeVO vo,
+								 @PathVariable("groupId") int groupId ) {
+		vo.setId(groupId);
 		commonCodeService.updateGroupCode(vo);
 	}
 	
@@ -53,8 +55,10 @@ public class CommonCodeRestController {
 	}
 	
 	/* 상세코드 수정 */
-	@PostMapping(value = "/detail/update")
-	public void updateDetailCode( @RequestBody DetailCodeVO vo ) {
+	@PostMapping(value = "/detail/update/{detailId}")
+	public void updateDetailCode( @RequestBody DetailCodeVO vo,
+								  @PathVariable("detailId") int detailId ) {
+		vo.setId(detailId);
 		commonCodeService.updateDetailCode(vo);
 	}
 	

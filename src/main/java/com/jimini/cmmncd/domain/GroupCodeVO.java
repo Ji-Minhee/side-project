@@ -11,5 +11,6 @@ public class GroupCodeVO {
 	private String description;
 	private String useYn;
 	private String regDate;
+	private String updateDate;
 	
 }

@@ -12,6 +12,7 @@ public class DetailCodeVO {
 	private String description;
 	private String useYn;
 	private String regDate;
+	private String updateDate;
 	
 	private String groupCode;
 	

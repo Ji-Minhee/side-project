@@ -32,10 +32,11 @@
 	
 	<update id="updateGroupCode" parameterType="com.jimini.cmmncd.domain.GroupCodeVO">
 		UPDATE board_ex.tb_codegroup
-		SET group_code = #{groupCode},
+		SET 
 			group_code_name = #{groupCodeName},
-			description = #{description},
-			use_yn = #{useYn}
+			description 	= #{description},
+			use_yn 			= #{useYn},
+			update_date 	= now()
 		WHERE id = #{id}
 	</update>
 	
@@ -86,11 +87,12 @@
 	
 	<update id="updateDetailCode" parameterType="com.jimini.cmmncd.domain.DetailCodeVO">
 		UPDATE board_ex.tb_codedetail
-		SET group_id = #{groupId},
-			detail_code = #{detailCode},
-			detail_code_name = #{detailCodeName},
-			description = #{description},
-			use_yn = #{useYn}
+		SET 
+			detail_code 		= #{detailCode},
+			detail_code_name	= #{detailCodeName},
+			description 		= #{description},
+			use_yn 				= #{useYn},
+			update_date 		= now()
 		WHERE id = #{id}
 	</update>
 	

@@ -32,11 +32,11 @@ $(document).ready(function(){
         <li class="nav-item active">
           <a class="nav-link" href="/web/list">게시판<span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="/web/code/group/list">공통코드관리</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"></a>
+          <a class="nav-link" href="/web/member/list">회원관리</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"></a>

@@ -65,7 +65,7 @@
 		FROM board_ex.tb_posts
 	</select>
 	
-	<update id="hitPlus" parameterType="com.jimini.board.domain.PostVO">
+	<update id="hitPlus" parameterType="Long">
 		UPDATE	board_ex.tb_posts
 		SET		view_count = view_count + 1
 		WHERE	pno = #{pno}

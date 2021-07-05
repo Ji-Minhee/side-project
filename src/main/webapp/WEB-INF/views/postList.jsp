@@ -73,24 +73,25 @@ function fn_next(page, range, rangeSize) {
 		<button type="button" class="btn btn-primary" id="write">등록</button>
 	</p>
 	
-	<table class="table table-sm text-center table-bordered table-hover">
+	<table class="table table-sm text-center table-hover">
 		<thead>
 			<tr>
 				<th scope="col" class="col-md-1">No</th>
 				<th scope="col" class="col-md-4">title</th>
 				<th scope="col" class="col-md-2">writer</th>
 				<th scope="col" class="col-md-1">view_count</th>
-				<th scope="col" class="col-md-3">date</th>
+				<th scope="col" class="col-md-2">date</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${postList}" var="list">
+				<c:set var="regDate" value="${list.regDate}"/>
 				<tr>
 					<td>${list.pno}</td>
 					<td><a href="#" data-pno="${list.pno}" id="goDetail">${list.title}</a></td>
 					<td>${list.writer}</td>
 					<td>${list.viewCount}</td>
-					<td>${list.regDate}</td>
+					<td>${fn:split(regDate, ' ')[0]}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
