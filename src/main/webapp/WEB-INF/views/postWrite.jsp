@@ -49,27 +49,26 @@ function postWrite() {
 	
 	<br>
 	
-<table class="table table-sm table-bordered">
-	<tr>
-		<th class="text-center col-md-2">title</th>
-		<td class="col-xs-4"><input type="text" class="form-control" id="title"></td>
-	</tr>
-	<tr>
-		<th class="text-center">writer</th>
-		<td class="col-xs-4"><input type="text" class="form-control" id="writer"></td>
-	</tr>
-	<tr>
-		<th class="text-center">content</th>
-		<td class="col-xs-4"><textarea class="form-control" id="content" name="content" rows="5"></textarea></td>
-	</tr>
-</table>
-
-<br>
-<p class="row justify-content-center">
-	<button type="button" class="btn btn-primary" id="list">목록</button> &nbsp; 
-	<button type="button" class="btn btn-primary" id="upload_btn">저장</button>
-</p>
-
+	<table class="table table-sm table-bordered">
+		<tr>
+			<th class="text-center col-md-2">title</th>
+			<td class="col-xs-4"><input type="text" class="form-control" id="title"></td>
+		</tr>
+		<tr>
+			<th class="text-center">writer</th>
+			<td class="col-xs-4"><input type="text" class="form-control" id="writer"></td>
+		</tr>
+		<tr>
+			<th class="text-center">content</th>
+			<td class="col-xs-4"><textarea class="form-control" id="content" name="content" rows="5"></textarea></td>
+		</tr>
+	</table>
+	
+	<br>
+	<p class="row justify-content-center">
+		<button type="button" class="btn btn-primary" id="list">목록</button> &nbsp; 
+		<button type="button" class="btn btn-primary" id="upload_btn">저장</button>
+	</p>
 
 </div>
 </body>

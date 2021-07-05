@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jimini.member.mapper.MemberMapper">
+
+	<select id="selectMemberList" resultType="com.jimini.member.domain.MemberVO">
+		SELECT	id				AS id,
+				mb_user_id		AS mbUserId,
+				mb_pw			AS mbPw,
+				mb_name			AS mbName,
+				mb_cellphone	AS mbCellphone,
+				mb_email		AS mbEmail,
+				mb_birth		AS mbBirth,
+				active			AS active,
+				reg_date		AS regDate,
+				update_date		AS updateDate
+		FROM board_ex.tb_member
+		<!-- LIMIT #{startList}, #{listSize} -->
+	</select>
+	
+	<insert id="createMemberInfo" parameterType="com.jimini.member.domain.MemberVO">
+		INSERT INTO board_ex.tb_member (
+			mb_user_id,
+			mb_pw,
+			mb_name,
+			mb_cellphone,
+			mb_email,
+			mb_birth,
+			reg_date
+		)
+		VALUE (
+			#{mbUserId},
+			#{mbPw},
+			#{mbName},
+			#{mbCellphone},
+			#{mbEmail},
+			#{mbBirth},
+			now()
+		)
+	</insert>
+	
+	<update id="updateMemberInfo" parameterType="com.jimini.member.domain.MemberVO">
+		UPDATE board_ex.tb_member
+		SET 
+			mb_pw 			= #{mbPw},
+			mb_name 		= #{mbName},
+			mb_cellphone 	= #{mbCellphone},
+			mb_email 		= #{mbEmail},
+			mb_birth 		= #{mbBirth},
+			active 			= #{active},
+			update_date = now()
+		WHERE mb_id = #{mbId}
+	</update>
+	
+	<select id="memberTotalCount" resultType="int">
+		SELECT COUNT(*)	AS totCnt
+		FROM board_ex.tb_member
+	</select>
+
+</mapper>
