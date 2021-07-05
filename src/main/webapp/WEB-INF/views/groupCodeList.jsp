@@ -155,7 +155,8 @@ function showCodeList(data) {
 		html.push(	'<td><input type="text" class="form-control" name="description" value="'+item.description+'"></td>');
 		html.push(	'<td><select class="form-control" name="useYn">'+useYn+'</select></td>');
 		html.push(	'<td>'+item.regDate.split(' ')[0]+'</td>');
-		html.push(	'<td><button class="btn btn-sm btn-outline-primary" name="updateDetail">수정</button></td>');
+		/* html.push(	'<td><button class="btn btn-sm btn-outline-primary" name="updateDetail">수정</button></td>'); */
+		html.push(	'<td></td>');
 		html.push('</tr>');
 	}
 	$("#listAll").append(html.join(''));
@@ -292,7 +293,6 @@ function detailCodeUpdate(detailId) {
 		</tbody>
 	</table>
 	<br>
-	
 	
 </div>	
 </body>
