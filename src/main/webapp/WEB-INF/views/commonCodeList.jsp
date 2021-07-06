@@ -13,6 +13,7 @@
 
 var groupId = null;
 var groupCode = null;
+var detailId = null;
 
 $(document).ready(function(){
 	
@@ -26,6 +27,7 @@ $(document).ready(function(){
 		getCodeList();
 		
 	});
+	
 	
 	/* 그룹코드 추가 버튼 */
 	$("#addGroupRow").on('click', function() {
@@ -92,7 +94,8 @@ $(document).ready(function(){
 	/* 수정 버튼 (상세코드) */
 	$(document).on("click", 'button[name=updateDetail]', function(e) {
 		e.preventDefault();
-		var detailId = $(this).closest("tr").data('did');
+		detailId = $(this).closest("tr").data('did');
+		console.log("수정 ::: "+detailId);
 		detailCodeUpdate(detailId);
 	});
 	
@@ -150,16 +153,22 @@ function showCodeList(data) {
 		html.push('<tr class="trAddDetail" data-did="'+item.id+'">');
 		html.push(	'<td class="hidden-col">'+item.id+'</td>');
 		html.push(	'<td>'+item.groupCode+'</td>');
-		html.push(	'<td><input type="text" class="form-control" name="detailCode" value="'+item.detailCode+'"></td>');
-		html.push(	'<td><input type="text" class="form-control" name="detailCodeName" value="'+item.detailCodeName+'"></td>');
-		html.push(	'<td><input type="text" class="form-control" name="description" value="'+item.description+'"></td>');
-		html.push(	'<td><select class="form-control" name="useYn">'+useYn+'</select></td>');
+		html.push(	'<td><input type="text" class="form-control" id="detailCode'+item.id+'" 	name="detailCode" 			value="'+item.detailCode+'"></td>');
+		html.push(	'<td><input type="text" class="form-control" id="detailCodeName'+item.id+'" name="detailCodeName" 		value="'+item.detailCodeName+'"></td>');
+		html.push(	'<td><input type="text" class="form-control" id="description'+item.id+'" 	name="descriptionDetail" 	value="'+item.description+'"></td>');
+		html.push(	'<td><select class="form-control" 			 id="useYn'+item.id+'" 			name="useYnDetail">'+useYn+'</select></td>');
 		html.push(	'<td>'+item.regDate.split(' ')[0]+'</td>');
-		/* html.push(	'<td><button class="btn btn-sm btn-outline-primary" name="updateDetail">수정</button></td>'); */
-		html.push(	'<td></td>');
+		html.push(	'<td><button class="btn btn-sm btn-outline-primary" name="updateDetail">수정</button></td>');
 		html.push('</tr>');
 	}
 	$("#listAll").append(html.join(''));
+	
+	
+	/* 상세코드 row 클릭 시 */
+	$("#listAll tr").on('click', function() {
+		detailId = $(this).closest("tr").data('did');
+		console.log(detailId);
+	});
 	
 }
 <%--// 상세코드 리스트 조회 --%>
@@ -208,10 +217,10 @@ function detailCodeUpdate(detailId) {
 		type: "POST",
 		url: "/rest/code/detail/update/" + detailId,
 		data: JSON.stringify({
-			"detailCode" 		: $("input[name=detailCode]").val(),
-			"detailCodeName" 	: $("input[name=detailCodeName]").val(),
-			"description" 		: $("input[name=description]").val(),
-			"useYn" 			: $("select[name=useYn]").val()
+			"detailCode" 		: $("#detailCode"+detailId).val(),
+			"detailCodeName" 	: $("#detailCodeName"+detailId).val(),
+			"description" 		: $("#description"+detailId).val(),
+			"useYn" 			: $("#useYn"+detailId+" option:selected").val()
 		}),
 		contentType: "application/json; charset=utf-8",
 		success: function() {
@@ -276,7 +285,7 @@ function detailCodeUpdate(detailId) {
 		<button type="button" class="btn btn-primary" id="addDetailRow"> 추가 </button>
 	</p>
 	
-	<table id="detailCodeList" class="table table-sm text-center">
+	<table id="detailCodeList" class="table table-sm text-center table-hover">
 		<thead>
 			<tr>
 				<th scope="col" class="hidden-col">id</th>

@@ -26,29 +26,20 @@ public class CommonCodeWebController {
 		List<GroupCodeVO> groupList = commonCodeService.getGroupCodeList();
 		model.addAttribute("groupList", groupList);
 		
-		return "groupCodeList";
+		return "commonCodeList";
 	}
 	
-	@GetMapping("/group/create")
-	public String groupCodeCreate() {
-		return "groupCodeWrite";
-	}
-	
-	@GetMapping("/group/update/{id}")
-	public String groupCodeUpdate( Model model,
-								   @PathVariable("id") int id ) {
-		model.addAttribute("id", id);
-		return "groupCodeUpdate";
-	}
-	
-	
-	
-	
-	//test
-	@GetMapping("/detail/list")
-	public String detailCodeList() {
-		return "detailCodeList";
-	}
+//	@GetMapping("/group/create")
+//	public String groupCodeCreate() {
+//		return "groupCodeWrite";
+//	}
+//	
+//	@GetMapping("/group/update/{id}")
+//	public String groupCodeUpdate( Model model,
+//								   @PathVariable("id") int id ) {
+//		model.addAttribute("id", id);
+//		return "groupCodeUpdate";
+//	}
 	
 	
 }
