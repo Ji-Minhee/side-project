@@ -14,6 +14,22 @@ $(document).ready(function(){
 	/* 회원 등록 */
 	$(document).on('click', '#upload_btn', function(e) {
 		e.preventDefault();
+		
+		/* validation check */
+		var userId 		= $("#mbUserId").val();
+		var password 	= $("#mbPw").val();
+		var name 		= $("#mbName").val();
+		var cellphone 	= $("#mbCellphone").val();
+		var email 		= $("#mbEmail").val();
+		var birth 		= $("#mbBirth").val();
+		$(".error-text").hide();
+		if (!userId) 	{$(".text1").show();$("#mbUserId").focus();return;}
+		if (!password) 	{$(".text2").show();$("#mbPw").focus();return;}
+		if (!name) 		{$(".text3").show();$("#mbName").focus();return;}
+		if (!cellphone) {$(".text4").show();$("#mbCellphone").focus();return;}
+		if (!email) 	{$(".text5").show();$("#mbEmail").focus();return;}
+		if (!birth) 	{$(".text6").show();$("#mbBirth").focus();return;}
+		
 		memberJoin();
 	});
 	
@@ -55,30 +71,48 @@ function memberJoin() {
 	
 	<br>
 	
-	<table class="table text-center" style="width: 600px; margin-left: auto; margin-right: auto;">
+	<table class="table " style="width: 600px; margin-left: auto; margin-right: auto;">
 		<tr>
 			<th class="text-center col-md-3">ID</th>
-			<td class="col-xs-4"><input type="text" class="form-control" id="mbUserId"></td>
+			<td class="col-xs-4">
+				<input type="text" class="form-control" id="mbUserId">
+				<i class="bi bi-exclamation-circle error-text text1" style="color: red; display: none;"> ID를 입력하세요</i>
+			</td>
 		</tr>
 		<tr>
 			<th class="text-center">비밀번호</th>
-			<td class="col-xs-4"><input type="password" class="form-control" id="mbPw"></td>
+			<td class="col-xs-4">
+				<input type="password" class="form-control" id="mbPw">
+				<i class="bi bi-exclamation-circle error-text text2" style="color: red; display: none;"> 비밀번호를 입력하세요</i>
+			</td>
 		</tr>
 		<tr>
 			<th class="text-center">이름</th>
-			<td class="col-xs-4"><input type="text" class="form-control" id="mbName"></td>
+			<td class="col-xs-4">
+				<input type="text" class="form-control" id="mbName">
+				<i class="bi bi-exclamation-circle error-text text3" style="color: red; display: none;"> 이름을 입력하세요</i>
+			</td>
 		</tr>
 		<tr>
 			<th class="text-center">휴대폰번호</th>
-			<td class="col-xs-4"><input type="text" class="form-control" id="mbCellphone"></td>
+			<td class="col-xs-4">
+				<input type="text" class="form-control" id="mbCellphone">
+				<i class="bi bi-exclamation-circle error-text text4" style="color: red; display: none;"> 휴대폰번호를 입력하세요</i>
+			</td>
 		</tr>
 		<tr>
 			<th class="text-center">이메일</th>
-			<td class="col-xs-4"><input type="text" class="form-control" id="mbEmail"></td>
+			<td class="col-xs-4">
+				<input type="text" class="form-control" id="mbEmail">
+				<i class="bi bi-exclamation-circle error-text text5" style="color: red; display: none;"> 이메일을 입력하세요</i>
+			</td>
 		</tr>
 		<tr>
 			<th class="text-center">생년월일</th>
-			<td class="col-xs-4"><input type="text" class="form-control" id="mbBirth"></td>
+			<td class="col-xs-4">
+				<input type="text" class="form-control" id="mbBirth">
+				<i class="bi bi-exclamation-circle error-text text6" style="color: red; display: none;"> 생년월일 입력하세요</i>
+			</td>
 		</tr>
 	</table>
 	
