@@ -51,13 +51,17 @@ $(document).ready(function(){
 			<c:forEach items="${memberList}" var="list">
 				<c:set var="regDate" value="${list.regDate}"/>
 				<c:set var="active" value="${list.active}"/>
+				<c:set var="mbBirth" value="${list.mbBirth}"/>
+				<c:set var="birth" value="${fn:substring(mbBirth,0,4)}"/>
+				<c:set var="now" value="<%=new java.util.Date()%>" />
+				<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy"/></c:set>
 				<tr class="trAdd" data-id="${list.id}">
 					<td class="hidden-col">${list.id}</td>
 					<td>${list.mbUserId}</td>
 					<td>${list.mbName}</td>
 					<td>${list.mbCellphone}</td>
 					<td>${list.mbEmail}</td>
-					<td>${list.mbBirth}</td>
+					<td><c:out value="${sysYear-birth+1}"/></td>
 					<td>
 						<c:choose>
 							<c:when test="${active eq 'y'}">활동 중</c:when>
