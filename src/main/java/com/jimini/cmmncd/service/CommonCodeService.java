@@ -20,6 +20,10 @@ public interface CommonCodeService {
 	/* 총 그룹코드 수 */
 	public int groupCodeTotalCount();
 	
+	/* 그룹코드 수 */
+	public int groupCodeCount(String groupCode);
+	
+	
 	
 	/* 상세코드 리스트 */
 	public CodeResponseVO getDetailCodeList(int groupId);

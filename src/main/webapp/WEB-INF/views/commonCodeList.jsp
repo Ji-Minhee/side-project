@@ -33,12 +33,12 @@ $(document).ready(function(){
 	$("#addGroupRow").on('click', function() {
 		var addTbRow =	'<tr>'+
 				        	'<td class="active hidden-col"></td>'+
-				        	'<td class="active col-md-2"><input type="text" class="form-control" name="groupCode"></td>'+
+				        	'<td class="active col-md-2"><input type="text" class="form-control" name="groupCode" id="groupCodeDefault"></td>'+
 					        '<td class="active col-md-2"><input type="text" class="form-control" name="groupCodeName"></td>'+
 					        '<td class="active col-md-3"><input type="text" class="form-control" name="description"></td>'+
 					        '<td class="active col-md-1"><select class="form-control" name="useYn"><option value="y">사용</option><option value="n">미사용</option></select></td>'+
 					        '<td class="active col-md-1">ㅡ</td>'+
-					        '<td class="active col-md-1"><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#staticBackdrop" name="saveGroup">저장</button><button class="btn btn-sm btn-secondary" name="delRow">취소</button></td>'+
+					        '<td class="active col-md-1"><button class="btn btn-sm btn-primary" name="saveGroup">저장</button><button class="btn btn-sm btn-secondary" name="delRow">취소</button></td>'+
 				        '</tr>';
         
 		var trHtml = $( ".trAddGroup:last" ); //last를 사용하여 trAddGroup라는 명을 가진 마지막 태그 호출
@@ -76,7 +76,9 @@ $(document).ready(function(){
 	/* 저장 버튼 (그룹코드) */
 	$(document).on("click", 'button[name=saveGroup]', function(e) {
 		e.preventDefault();
-		groupCodeWrite();
+		var groupCode = $("#groupCodeDefault").val()
+		/* 그룹코드 중복체크 */
+		groupCodeCnt(groupCode);
 	});
 	
 	/* 저장 버튼 (상세코드) */
@@ -100,6 +102,21 @@ $(document).ready(function(){
 	});
 	
 });
+
+<%-- 그룹코드 중복체크 --%>
+function groupCodeCnt(groupCode) {
+	$.ajax({
+		type: "GET",
+		url: "/rest/code/group/list/" + groupCode,
+		success: function(data) {
+			if(data == true) {
+				groupCodeWrite();
+			} else {
+				alert("그룹코드 중복 불가");
+			}
+		}
+	});
+}
 
 <%-- 새 그룹코드 등록 --%>
 function groupCodeWrite() {
@@ -155,8 +172,8 @@ function showCodeList(data) {
 		html.push(	'<td>'+item.groupCode+'</td>');
 		html.push(	'<td><input type="text" class="form-control" id="detailCode'+item.id+'" 	name="detailCode" 			value="'+item.detailCode+'"></td>');
 		html.push(	'<td><input type="text" class="form-control" id="detailCodeName'+item.id+'" name="detailCodeName" 		value="'+item.detailCodeName+'"></td>');
-		html.push(	'<td><input type="text" class="form-control" id="description'+item.id+'" 	name="descriptionDetail" 	value="'+item.description+'"></td>');
-		html.push(	'<td><select class="form-control" 			 id="useYn'+item.id+'" 			name="useYnDetail">'+useYn+'</select></td>');
+		html.push(	'<td><input type="text" class="form-control" id="descriptionDetail'+item.id+'" 	name="descriptionDetail" 	value="'+item.description+'"></td>');
+		html.push(	'<td><select class="form-control" 			 id="useYnDetail'+item.id+'" 			name="useYnDetail">'+useYn+'</select></td>');
 		html.push(	'<td>'+item.regDate.split(' ')[0]+'</td>');
 		html.push(	'<td><button class="btn btn-sm btn-outline-primary" name="updateDetail">수정</button></td>');
 		html.push('</tr>');
@@ -199,9 +216,9 @@ function groupCodeUpdate() {
 		type: "POST",
 		url: "/rest/code/group/update/" + groupId,
 		data: JSON.stringify({
-			"groupCodeName" : $("input[name=groupCodeName]").val(),
-			"description" 	: $("input[name=description]").val(),
-			"useYn" 		: $("select[name=useYn]").val()
+			"groupCodeName" : $("#groupCodeName"+groupId).val(),
+			"description" 	: $("#descriptionGroup"+groupId).val(),
+			"useYn" 		: $("#useYnGroup"+groupId+" option:selected").val()
 		}),
 		contentType: "application/json; charset=utf-8",
 		success: function() {
@@ -219,8 +236,8 @@ function detailCodeUpdate(detailId) {
 		data: JSON.stringify({
 			"detailCode" 		: $("#detailCode"+detailId).val(),
 			"detailCodeName" 	: $("#detailCodeName"+detailId).val(),
-			"description" 		: $("#description"+detailId).val(),
-			"useYn" 			: $("#useYn"+detailId+" option:selected").val()
+			"description" 		: $("#descriptionDetail"+detailId).val(),
+			"useYn" 			: $("#useYnDetail"+detailId+" option:selected").val()
 		}),
 		contentType: "application/json; charset=utf-8",
 		success: function() {
@@ -262,10 +279,10 @@ function detailCodeUpdate(detailId) {
 				<tr class="trAddGroup" data-id="${list.id}" data-code="${list.groupCode}">
 					<td class="hidden-col">${list.id}</td>
 					<td>${list.groupCode}</td>
-					<td><input type="text" class="form-control" name="groupCodeName" value="${list.groupCodeName}"></td>
-					<td><input type="text" class="form-control" name="description" value="${list.description}"></td>
+					<td><input type="text" class="form-control" id="groupCodeName${list.id}" 	 name="groupCodeName" 		value="${list.groupCodeName}"></td>
+					<td><input type="text" class="form-control" id="descriptionGroup${list.id}"	 name="descriptionGroup" 	value="${list.description}"></td>
 					<td>
-						<select class="form-control" name="useYn">
+						<select class="form-control" id="useYnGroup${list.id}" name="useYnGroup">
 							<c:choose>
 								<c:when test="${useYn eq 'y'}"><option value="y" selected>사용</option><option value="n">미사용</option></c:when>
 								<c:when test="${useYn eq 'n'}"><option value="y">사용</option><option value="n" selected>미사용</option></c:when>

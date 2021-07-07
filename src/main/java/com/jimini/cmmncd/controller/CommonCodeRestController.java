@@ -21,6 +21,20 @@ public class CommonCodeRestController {
 	private CommonCodeService commonCodeService;
 	
 	
+	/* 그룹코드 등록시 비교 */
+	@GetMapping(value = "/group/list/{groupCode}")
+	public boolean getGroupCodeList( @PathVariable("groupCode") String groupCode ) {
+		
+		int codeCnt = commonCodeService.groupCodeCount(groupCode);
+		
+		boolean flag = true;
+		
+		if (codeCnt > 0) {
+			flag = false;
+		}
+		return flag;
+	}
+	
 	/* 그룹코드 등록 */
 	@PostMapping(value = "/group/write")
 	public void createGroupCode( @RequestBody GroupCodeVO vo ) {

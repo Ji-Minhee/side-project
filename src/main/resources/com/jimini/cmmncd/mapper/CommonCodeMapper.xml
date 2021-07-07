@@ -44,6 +44,12 @@
 		SELECT COUNT(*)	AS totCnt
 		FROM board_ex.tb_codegroup
 	</select>
+	
+	<select id="groupCodeCount" parameterType="String"   resultType="int">
+		SELECT COUNT(*)	AS totCnt
+		FROM board_ex.tb_codegroup
+		WHERE group_code = #{groupCode}
+	</select>
 
 
 

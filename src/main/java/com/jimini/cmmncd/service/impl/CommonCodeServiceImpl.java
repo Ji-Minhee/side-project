@@ -38,6 +38,12 @@ public class CommonCodeServiceImpl implements CommonCodeService {
 		return commonCodeMapper.groupCodeTotalCount();
 	}
 	
+	@Override
+	public int groupCodeCount(String groupCode) {
+		return commonCodeMapper.groupCodeCount(groupCode);
+	}
+	
+	
 	
 	@Override
 	public CodeResponseVO getDetailCodeList(int groupId) {
