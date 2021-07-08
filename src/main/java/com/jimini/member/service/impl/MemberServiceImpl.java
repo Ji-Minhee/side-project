@@ -27,8 +27,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void updateMemberInfo() {
-		memberMapper.updateMemberInfo();
+	public MemberVO selectMemberInfo(Long id) {
+		return memberMapper.selectMemberInfo(id);
+	}
+	
+	@Override
+	public void updateMemberInfo(MemberVO vo) {
+		memberMapper.updateMemberInfo(vo);
 	}
 	
 	@Override

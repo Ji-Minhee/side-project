@@ -38,6 +38,21 @@
 		)
 	</insert>
 	
+	<select id="selectMemberInfo" parameterType="Long" resultType="com.jimini.member.domain.MemberVO">
+		SELECT	id				AS id,
+				mb_user_id		AS mbUserId,
+				mb_pw			AS mbPw,
+				mb_name			AS mbName,
+				mb_cellphone	AS mbCellphone,
+				mb_email		AS mbEmail,
+				mb_birth		AS mbBirth,
+				active			AS active,
+				reg_date		AS regDate,
+				update_date		AS updateDate
+		FROM board_ex.tb_member
+		WHERE id = #{id}
+	</select>
+	
 	<update id="updateMemberInfo" parameterType="com.jimini.member.domain.MemberVO">
 		UPDATE board_ex.tb_member
 		SET 
@@ -47,8 +62,8 @@
 			mb_email 		= #{mbEmail},
 			mb_birth 		= #{mbBirth},
 			active 			= #{active},
-			update_date = now()
-		WHERE mb_id = #{mbId}
+			update_date 	= now()
+		WHERE id = #{id}
 	</update>
 	
 	<select id="memberTotalCount" resultType="int">

@@ -26,6 +26,7 @@ $(document).ready(function(){
 	<ul>
 		<li><a href="/web/list">게시판</a></li>
 		<li><a href="/web/code/group/list">공통코드관리</a></li>
+		<li><a href="/web/member/list">회원관리</a></li>
 	</ul>
 
 

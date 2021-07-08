@@ -10,7 +10,8 @@
 <link rel="stylesheet" href="<c:url value='/jslib/bootstrap-4.4.1-dist/css/bootstrap.min.css'/>">
 <script src="<c:url value='/jslib/jquery/jquery-3.4.1.min.js'/>"></script>
 <script src="<c:url value='/jslib/bootstrap-4.4.1-dist/js/bootstrap.min.js'/>"></script>
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="<c:url value='/css/main.css'/>">
+<link rel="stylesheet" href="<c:url value='/css/popup.css'/>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <title></title>
 <script type="text/javascript">
@@ -36,7 +37,7 @@ $(document).ready(function(){
         <li class="nav-item active">
           <a class="nav-link" href="/web/code/group/list">공통코드관리</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="/web/member/list">회원관리</a>
         </li>
         <li class="nav-item">

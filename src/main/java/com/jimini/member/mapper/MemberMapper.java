@@ -15,8 +15,11 @@ public interface MemberMapper {
 	/* 회원 정보 생성 */
 	public void createMemberInfo(MemberVO vo);
 	
+	/* 회원 상세 정보 */
+	public MemberVO selectMemberInfo(Long id);
+	
 	/* 회원 정보 수정 */
-	public void updateMemberInfo();
+	public void updateMemberInfo(MemberVO vo);
 	
 	/* 회원 수 */
 	public int memberTotalCount();
