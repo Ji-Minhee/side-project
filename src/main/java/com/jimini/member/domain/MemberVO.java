@@ -1,5 +1,9 @@
 package com.jimini.member.domain;
 
+import java.util.List;
+
+import com.jimini.role.domain.RoleVO;
+
 import lombok.Data;
 
 @Data
@@ -16,6 +20,6 @@ public class MemberVO {
 	private String regDate;
 	private String updateDate;
 	
-	private String Age;
+	private List<RoleVO> roles;
 	
 }
