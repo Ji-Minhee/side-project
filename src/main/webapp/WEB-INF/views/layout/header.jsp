@@ -12,7 +12,9 @@
 <script src="<c:url value='/jslib/bootstrap-4.4.1-dist/js/bootstrap.min.js'/>"></script>
 <link rel="stylesheet" href="<c:url value='/css/main.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/popup.css'/>">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="<c:url value='/jslib/fontawesome-free/css/all.min.css'/>">
+<script src="<c:url value='/jslib/fontawesome-free/js/all.min.js'/>"></script>
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> -->
 <title></title>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -25,10 +27,10 @@ $(document).ready(function(){
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
   <div class="container">
-    <a class="navbar-brand" href="/"><img src="https://post-phinf.pstatic.net/MjAxOTA2MjFfMTE0/MDAxNTYxMDk2MDMwNzUx.6aHY5DoAOJM5Xv9W_XOAUObrBYCf9fTkdxDEZvs22skg.O8ksxSCGrztOXen07DoWf2OfWAPNDcm1DR80ar4dY6Ug.JPEG/tja.jpg?type=w1200" alt="" width="90px" height="70px"></a>
+    <a class="navbar-brand" href="/"><img src="<c:url value='/img/moonrabbit.jpg" alt="logo" width="90px" height="70px'/>"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+		<span class="navbar-toggler-icon"></span>
+	</button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
